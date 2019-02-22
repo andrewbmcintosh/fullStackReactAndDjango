@@ -44,7 +44,8 @@ export const addLead = lead => dispatch => {
         status: err.response.status
       };
       dispatch({
-        type: GET_ERRORS
+        type: GET_ERRORS,
+        payload: errors
       });
     });
 };
