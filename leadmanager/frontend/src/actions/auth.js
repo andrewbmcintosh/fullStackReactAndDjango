@@ -30,7 +30,7 @@ export const loadUser = () => (dispatch, getState) => {
   }
 
   axios
-    .get("/api/auth/user", config)
+    .get("/api/auth/user/", config)
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -58,7 +58,7 @@ export const login = (username, password) => dispatch => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post("/api/auth/login", body, config)
+    .post("/api/auth/login/", body, config)
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -75,7 +75,6 @@ export const login = (username, password) => dispatch => {
 
 //  LOGOUT USER
 export const logout = () => (dispatch, getState) => {
-
   // get token from state
   const token = getState().auth.token;
 
@@ -92,7 +91,7 @@ export const logout = () => (dispatch, getState) => {
   }
 
   axios
-    .get("/api/auth/logout",null, config)
+    .get("/api/auth/logout/", null, config)
     .then(res => {
       dispatch({
         type: LOGOUT_SUCCESS
