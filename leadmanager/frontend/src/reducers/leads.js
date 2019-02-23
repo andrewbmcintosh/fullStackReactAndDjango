@@ -12,20 +12,16 @@ export default function(state = initialState, action) {
         leads: action.payload
       };
     case DELETE_LEAD:
-    return {
-      ...state,
-      // this makes sure that it is deleted in the server and then 
-      // does not show up on the ui
-      leads: state.leads.filter(lead => lead.id !==
-        action.payload)
-    }
+      return {
+        ...state,
+        leads: state.leads.filter(lead => lead.id !== action.payload)
+      };
     case ADD_LEAD:
       return {
         ...state,
         leads: [...state.leads, action.payload]
-      }
+      };
     default:
       return state;
   }
 }
- 

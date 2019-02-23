@@ -38,6 +38,7 @@ export const addLead = lead => (dispatch, getState) => {
   axios
     .post("/api/leads/", lead, tokenConfig(getState))
     .then(res => {
+      dispatch(createMessage({ addLead: "Lead Added" }));
       dispatch({
         type: ADD_LEAD,
         payload: res.data

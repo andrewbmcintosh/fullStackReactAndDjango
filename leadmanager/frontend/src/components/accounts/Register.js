@@ -28,16 +28,16 @@ export class Register extends Component {
         username,
         password,
         email
-      }
-      this.props.register()
+      };
+      this.props.register(newUser);
     }
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    if(this.props.isAuthenticated){
-      return <Redirect to="/" />
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />;
     }
     const { username, email, password, password2 } = this.state;
     return (
