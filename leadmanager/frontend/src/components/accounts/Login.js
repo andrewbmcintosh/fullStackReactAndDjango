@@ -11,18 +11,21 @@ export class Login extends Component {
   };
 
   static propTypes = {
-      login: PropTypes.func.isRequired,
-      isAuthenticated: PropTypes.bool
-  }
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+  };
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.username)
+    this.props.login(this.state.username, this.state.password);
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
+      if(this.props.isAuthenticated){
+          return <Redirect to=
+      }
     const { username, password } = this.state;
     return (
       <div className="col-md-6 m-auto">
@@ -65,7 +68,10 @@ export class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-})
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
