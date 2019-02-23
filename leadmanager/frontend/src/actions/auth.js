@@ -5,7 +5,8 @@ import {
   USER_LOADING,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS
 } from "./types";
 
 // CHECK TOKEN AND LOAD USER
@@ -73,9 +74,7 @@ export const login = (username, password) => dispatch => {
 };
 
 //  LOGOUT USER
-export const loadUser = () => (dispatch, getState) => {
-  // User Loading
-  dispatch({ type: USER_LOADING });
+export const logout = () => (dispatch, getState) => {
 
   // get token from state
   const token = getState().auth.token;
@@ -93,11 +92,10 @@ export const loadUser = () => (dispatch, getState) => {
   }
 
   axios
-    .get("/api/auth/user", config)
+    .get("/api/auth/logout",null, config)
     .then(res => {
       dispatch({
-        type: USER_LOADED,
-        payload: res.data
+        type: LOGOUT_SUCCESS
       });
     })
     .catch(err => {
