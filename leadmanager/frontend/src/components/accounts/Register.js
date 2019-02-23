@@ -25,9 +25,9 @@ export class Register extends Component {
       this.props.createMessage({ passwordNotMatch: "Passwords do not match" });
     } else {
       const newUser = {
-        email,
         username,
-        password
+        password,
+        email
       }
       this.props.register()
     }
@@ -36,6 +36,9 @@ export class Register extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to="/" />
+    }
     const { username, email, password, password2 } = this.state;
     return (
       <div className="col-md-6 m-auto">
