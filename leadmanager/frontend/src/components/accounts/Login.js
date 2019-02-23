@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export class Login extends Component {
   state = {
     username: "",
-    password: "",
+    password: ""
   };
 
   onSubmit = e => {
